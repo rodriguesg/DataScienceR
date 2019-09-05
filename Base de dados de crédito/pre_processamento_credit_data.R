@@ -19,3 +19,16 @@ idade_invalida = base[base$age < 0 & !is.na(base$age), ]
 mean(base$age, na.rm = TRUE)
 mean(base$age[base$age > 0], na.rm = TRUE)
 base$age = ifelse(base$age < 0, mean(base$age[base$age > 0], na.rm = TRUE), base$age)
+
+#TRATAMENTO DE VALORES FALTANTES
+
+base[is.na(base$age), ]
+base$age = ifelse(is.na(base$age), mean(base$age, na.rm = TRUE), base$age)
+
+#ESCALONAMENTO DE ATRIBUTOS
+
+# 1 - Standardisation
+# 2 - Normalization
+
+base[, 1:3] = scale(base[, 1:3])
+
